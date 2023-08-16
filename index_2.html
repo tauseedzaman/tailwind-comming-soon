@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Coming Soon</title>
+    <style>
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes backgroundSpin {
+            0% {
+                background-position: center;
+            }
+            50% {
+                background-position: center 20%;
+            }
+            100% {
+                background-position: center 50%;
+            }
+        }
+        
+        .bg-image {
+            background-image: url('img/2.jpg');
+            background-size: cover;
+            animation: backgroundSpin 20s linear infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-image text-white flex justify-center items-center h-screen">
+
+    <div class="bg-opacity-75 bg-blue-500text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">Coming Soon</h1>
+        <p class="text-lg md:text-xl mb-8">We're working on something amazing. Stay tuned!</p>
+        <div class="flex justify-center mb-6">
+            <div class="bg-blue-500 hover:bg-blue-600 text-white rounded-md py-2 px-6 mx-2 cursor-pointer transition duration-300">
+                Subscribe
+            </div>
+            <div class="bg-gray-700 hover:bg-gray-800 text-white rounded-md py-2 px-6 mx-2 cursor-pointer transition duration-300">
+                Follow Us
+            </div>
+        </div>
+
+        <div class="flex items-center justify-center">
+            <div class="mr-6">
+                <i class="fab fa-facebook text-2xl hover:text-blue-500 transition duration-300 spin"></i>
+            </div>
+            <div class="mr-6">
+                <i class="fab fa-twitter text-2xl hover:text-blue-400 transition duration-300 spin"></i>
+            </div>
+            <div class="mr-6">
+                <i class="fab fa-instagram text-2xl hover:text-pink-500 transition duration-300 spin"></i>
+            </div>
+            <div class="mr-6">
+                <i class="fab fa-linkedin text-2xl hover:text-blue-600 transition duration-300 spin"></i>
+            </div>
+        </div>
+
+        <div class="text-3xl mt-8">
+            <div id="countdown" class="flex justify-center items-center">
+                <div class="bg-gray-800 p-2 rounded-md">
+                    <span id="days" class="font-bold"></span>
+                    <span class="text-sm block">days</span>
+                </div>
+                <div class="mx-2">:</div>
+                <div class="bg-gray-800 p-2 rounded-md">
+                    <span id="hours" class="font-bold"></span>
+                    <span class="text-sm block">hours</span>
+                </div>
+                <div class="mx-2">:</div>
+                <div class="bg-gray-800 p-2 rounded-md">
+                    <span id="minutes" class="font-bold"></span>
+                    <span class="text-sm block">minutes</span>
+                </div>
+                <div class="mx-2">:</div>
+                <div class="bg-gray-800  p-2 rounded-md">
+                    <span id="seconds" class="font-bold"></span>
+                    <span class="text-sm block">seconds</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date("2023-12-31T00:00:00").getTime();
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+
+</html>
